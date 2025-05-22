@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
+import "../Components/Login.css"
 
 const Login = () => {
     const navigate = useNavigate();
@@ -41,25 +42,34 @@ const Login = () => {
 
     return (
     <div className="login-Form-Container">
+        <div></div>
         <form className="login-Form" onSubmit={handleSubmit}>
-            <label>Name:</label>
-            <input
+            <div className="name-Container">
+            <label className="name-Label">Name:</label>
+            <input 
+                className="name-Input"
                 type="text"
                 defaultValue={name}
                 onChange={(event) => setName(event.target.value)}
-                placeholder="Enter Name Here"
+                placeholder="Enter Your Name Here"
                 required>
             </input>
-            <label>Email:</label>
+            </div>
+            <div className="email-Container">
+            <label className="email-Label">Email:</label>
             <input
+                className="email-Input"
                 type="email"
                 defaultValue={email}
                 onChange={(event) => setEmail(event.target.value)}
-                placeholder="Enter Email Here"
+                placeholder="Enter Your Email Here"
                 required>
             </input>
-            <button type="submit">Log In</button>
+
+            </div>
+            <button className="login-Button" type="submit">Log In</button>
         </form>
+        <div></div>
     </div>
     );
 };

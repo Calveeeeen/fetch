@@ -1,3 +1,14 @@
+:root{
+    --fetch-light-yellow: #ffef81;
+    --fetch-dark-purple: #300D38;
+    --fetch-light-purple:  rgb(137, 9, 117);
+    --fetch-white: #F9F8F9;
+    --fetch-dark-yellow:  #FFA900;
+    --fetch-yellow: #ffdf02;
+}
+
 body{
+    height: 100vh;
     margin: 0;
+    background-color: var(--fetch-light-yellow);
 }

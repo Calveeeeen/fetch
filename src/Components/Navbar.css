@@ -3,9 +3,8 @@
     grid-template-columns: 1fr 8fr 1fr;
     height: 50px;
     width: 100%;
-    background-color: #FFA900;
+    background-color:var(--fetch-dark-yellow);
     align-items: center;
-    /* overflow: hidden; */
 }
 
 .fetch-Logo {
@@ -15,7 +14,6 @@
     object-fit: contain;
     background-size: contain;
     background-position: top;
-    /* background-color: transparent; */
 }
 
 .logout-Button {
@@ -27,10 +25,10 @@
     width: 100px;
     border-radius: 5px;
     border: 1px solid black;
-    background-color: rgb(48, 13, 56);
-    color: #f9f8f9;
+    background-color: var(--fetch-dark-purple);
+    color: var(--fetch-white);
 }
 
 .logout-Button:hover {
-    background-color: rgb(137, 9, 117);
+    background-color: var(--fetch-light-purple);
 }

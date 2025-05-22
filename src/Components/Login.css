@@ -1,10 +1,69 @@
 .login-Form-Container{
-    height: 80%;
+    height: 400px;
     display:flex;
-
+    justify-content:center;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 2fr 1fr 2fr;
+    
 }
 
 .login-Form{
+    height: 300px;
+    display: grid;
+    grid-template-areas:  
+                ". . . "
+                ". name-Container ." 
+                ". email-Container ."
+                ". login-Button .";
+    background-color: var(--fetch-yellow);
+    border-radius: 15px;
+    border: 2px solid var(--fetch-dark-yellow);
+    box-shadow: 10px 10px 2px 1px var(--fetch-light-purple);
+}
+
+.name-Container{
+    grid-area: name-Container;
+    display: block;
+    align-items: center;
+    margin: auto;
+}
+.name-Label{
+    grid-area: name;
     display: flex;
-    width: 300px;
+    align-items:flex-end;
+}
+.name-Input{
+    grid-area: name-Input;
+    height: 25px; 
+    width: 90%;
+}
+
+.email-Container{
+    grid-area: email-Container;
+    margin: auto;
+
+}
+.email-Label{
+    grid-area: email;
+    display: flex;
+    align-items: flex-end;
+}
+
+.email-Input{
+    grid-area: email-Input;
+    height: 25px; 
+    width: 90%;
+}
+
+.login-Button{
+    grid-area: login-Button;
+    color: var(--fetch-dark-purple);
+    background-color: var(--fetch-dark-yellow);
+    border-radius: 5px;
+    border: 1px solid black;
+    font-weight: bolder;
+    width: 40%;
+    height: 25px;
+    justify-self: center;
 }
