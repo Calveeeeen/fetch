@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 
 const Login = () => {
-  const navigate = useNavigate();
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+    const navigate = useNavigate();
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
 
-  const handleSubmit = async (event) => {
+    const handleSubmit = async (event) => {
     event.preventDefault();
 
     console.log("Name: ", name);
@@ -14,52 +14,54 @@ const Login = () => {
 
     // Login fetch request
     try {
-      const res = await fetch(
+        const res = await fetch(
         "https://frontend-take-home-service.fetch.com/auth/login",
         {
-          method: "POST",
-          headers: {
+            method: "POST",
+            headers: {
             "Content-Type": "application/json",
-          },
-          credentials: "include",
-          body: JSON.stringify({
+            },
+            credentials: "include",
+            body: JSON.stringify({
             name: name,
             email: email,
-          }),
+            }),
         }
-      ).then((res) => {
+        ).then((res) => {
         if (!res.ok) {
-          throw new Error("Response Status: ", `${res.status}`);
+            throw new Error("Response Status: ", `${res.status}`);
         } else {
-          navigate("/Dogs");
+            navigate("/Dogs");
         }
-      });
+        });
     } catch (error) {
-      console.log(error.message);
+        console.log(error.message);
     }
-  };
+};
 
-  return (
-    <form className="login-form" onSubmit={handleSubmit}>
-      <label>Name:</label>
-      <input
-        type="text"
-        defaultValue={name}
-        onChange={(event) => setName(event.target.value)}
-        placeholder="Enter Name Here"
-        required
-      ></input>
-      <label>Email:</label>
-      <input
-        type="email"
-        defaultValue={email}
-        onChange={(event) => setEmail(event.target.value)}
-        placeholder="Enter Email Here"
-        required
-      ></input>
-      <button type="submit">Log In</button>
-    </form>
-  );
+    return (
+    <div className="login-Form-Container">
+        <form className="login-Form" onSubmit={handleSubmit}>
+            <label>Name:</label>
+            <input
+                type="text"
+                defaultValue={name}
+                onChange={(event) => setName(event.target.value)}
+                placeholder="Enter Name Here"
+                required>
+            </input>
+            <label>Email:</label>
+            <input
+                type="email"
+                defaultValue={email}
+                onChange={(event) => setEmail(event.target.value)}
+                placeholder="Enter Email Here"
+                required>
+            </input>
+            <button type="submit">Log In</button>
+        </form>
+    </div>
+    );
 };
 
 export default Login;

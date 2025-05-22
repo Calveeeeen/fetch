@@ -1,4 +1,36 @@
+.navbar-Container {
+    display: grid;
+    grid-template-columns: 1fr 8fr 1fr;
+    height: 50px;
+    width: 100%;
+    background-color: #FFA900;
+    align-items: center;
+    /* overflow: hidden; */
+}
 
-.fetchLogo {
-    height: 100px;
+.fetch-Logo {
+    display: flex;
+    margin: auto;
+    height:40px;
+    object-fit: contain;
+    background-size: contain;
+    background-position: top;
+    /* background-color: transparent; */
+}
+
+.logout-Button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    height: 25px;
+    width: 100px;
+    border-radius: 5px;
+    border: 1px solid black;
+    background-color: rgb(48, 13, 56);
+    color: #f9f8f9;
+}
+
+.logout-Button:hover {
+    background-color: rgb(137, 9, 117);
 }

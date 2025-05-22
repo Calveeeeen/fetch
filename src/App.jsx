@@ -9,8 +9,8 @@ function App() {
 
   return (
     <>
-      <Navbar/>
       <Router>
+        <Navbar/>
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/Dogs" element={<DogsPage />} />

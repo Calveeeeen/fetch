@@ -6,11 +6,13 @@ import "../Components/Navbar.css";
 const Navbar = () =>{
     
     return (
-        <div className="Navbar-container"> 
-            <img className="fetchLogo" src="src\assets\fetch-rewards@logotyp.us.svg" alt="fetchLogo"></img>
-            <button className="logoutButton">Logout</button>
+        <div className="navbar-Container"> 
+            <div></div>
+            <img className="fetch-Logo" src="src\assets\fetchLogo.svg" alt="fetchLogo"></img>
+            <button className="logout-Button">Logout</button>
         </div>
     )
 };
 
 export default Navbar;
+

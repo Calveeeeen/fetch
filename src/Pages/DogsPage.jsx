@@ -6,7 +6,7 @@ const DogsPage = () => {
     useEffect(() => {
     const getDogs = async () => {
         const res = await fetch(
-        "https://frontend-take-home-service.fetch.com/dogs/breeds",
+        "https://frontend-take-home-service.fetch.com/dogs/search",
         {
             credentials: "include",
         }
@@ -17,15 +17,17 @@ const DogsPage = () => {
     getDogs();
     }, []);
 
+
     return (
     <div>
-        <ul>
-        {dogs.map((dog) => {
-            return <li>{dog}</li>;
-        })}
-        </ul>
+        
+        {/* <ul>
+    //     {dogs.map((dog) => {
+    //         return <li>{dog}</li>;
+    //     })}
+    //     </ul> */}
     </div>
     );
-};
+}
 
 export default DogsPage;

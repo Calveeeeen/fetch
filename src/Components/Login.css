@@ -1,0 +1,10 @@
+.login-Form-Container{
+    height: 80%;
+    display:flex;
+
+}
+
+.login-Form{
+    display: flex;
+    width: 300px;
+}
