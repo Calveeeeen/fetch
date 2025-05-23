@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import "../Components/Login.css"
 
@@ -15,7 +15,7 @@ const Login = () => {
 
     // Login fetch request
     try {
-        const res = await fetch(
+        await fetch(
         "https://frontend-take-home-service.fetch.com/auth/login",
         {
             method: "POST",

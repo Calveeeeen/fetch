@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import DogCard from "../Components/DogCard"
 
 const DogsPage = () => {
     const [dogs, setDogs] = useState([]);
@@ -33,30 +34,18 @@ const DogsPage = () => {
         
     }, []);
     
-    console.log(dogs);
     
     return (
-        <div>
-            <div className="dogCardsContainer">
+        <div className="dogCardsContainer">
                 {dogs.length>0 ? (
                     dogs.map((dog) => {
-                        {console.log(dog.name)}
-                        return(
-                            <div className="dogCard" key={dog.id}>
-                                <img className="dogImage" src={dog.img}></img>
-                                <h2 className="dogName">{dog.name}</h2>
-                                <p className="dogBreed">{dog.breed}</p>
-                                <p className="dogAge">{dog.age}</p>
-                                <p className="dogZip">{dog.zip_code}</p>
-                            </div>
-                        )
+                        return (<DogCard dog={dog} key={dog.id}/>)
                     })
                 ) : (
                     <div>is Loading...</div>
                 ) } 
                 
-            </div>  
-        </div>
+            </div> 
     );
 };
 
