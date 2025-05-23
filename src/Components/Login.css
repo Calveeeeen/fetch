@@ -1,3 +1,6 @@
+*{
+    font-family: Helvetica, sans-serif;
+}
 .login-Form-Container{
     height: 400px;
     display:flex;
@@ -5,7 +8,6 @@
     align-items: center;
     display: grid;
     grid-template-columns: 2fr 1fr 2fr;
-    
 }
 
 .login-Form{
@@ -36,7 +38,7 @@
 .name-Input{
     grid-area: name-Input;
     height: 25px; 
-    width: 90%;
+    width: 95%;
 }
 
 .email-Container{
@@ -53,7 +55,7 @@
 .email-Input{
     grid-area: email-Input;
     height: 25px; 
-    width: 90%;
+    width: 95%;
 }
 
 .login-Button{
