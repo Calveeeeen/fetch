@@ -1,8 +1,11 @@
 :root{
     --fetch-light-yellow: #ffef81;
-    --fetch-dark-purple: #300D38;
+    --fetch-eggplant: #300D38;
+    --fetch-dark-purple: #0c091a;
+    --fetch-purple: #60158f;
     --fetch-light-purple:  rgb(137, 9, 117);
     --fetch-white: #F9F8F9;
+    --fetch-eggshell: #f9f7f2;
     --fetch-dark-yellow:  #FFA900;
     --fetch-yellow: #ffdf02;
 }

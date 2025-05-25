@@ -1,0 +1,24 @@
+.dogCard{
+    margin: 10px;
+    padding: 5px;
+    width: 250px;
+    border-radius: 5px;
+    border: 2px solid var(--fetch-dark-purple);
+    background-color: #fff0f8;
+    color: var(--fetch-dark-purple);
+    box-shadow: 10px 10px 2px 1px var(--fetch-purple);
+}
+
+.dogImage{
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    aspect-ratio: 1/1;
+    max-width: 200px;
+}
+
+.dogName, .dogBreed, .dogAge, .dogZip, .favButton{
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}

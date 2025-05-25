@@ -1,0 +1,9 @@
+.dogPageHeader{
+    text-align: center;
+}
+.dogCardsContainer{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    width: 95%;
+    margin: auto;
+}

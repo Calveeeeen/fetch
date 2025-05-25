@@ -21,7 +21,7 @@
     background-color: var(--fetch-yellow);
     border-radius: 15px;
     border: 2px solid var(--fetch-dark-yellow);
-    box-shadow: 10px 10px 2px 1px var(--fetch-light-purple);
+    box-shadow: 10px 10px 2px 1px var(--fetch-purple);
 }
 
 .name-Container{
