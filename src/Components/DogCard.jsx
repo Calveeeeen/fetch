@@ -1,13 +1,46 @@
 import "../Components/DogCard.css";
+import { useState, useEffect } from 'react';
 
 const DogCard = ({dog}) => {
     // create the dog card here.
-    const handleFavorite= async () => {
+    const [buttonText, setButtonText] = useState("Favorite")
+    
+    // useEffect(()=> {
+    //     const isFavorite = localStorage.getItem(dog.id);
+    //     setButtonText(isFavorite ? "Unfavorite" : "Favorite");
+    // }, [dog.id]);
+
+    useEffect(() => {
+        const key = "favorites";
+        const favorites = JSON.parse(localStorage.getItem(key)) || [];
+        const isFavorited = favorites.some((favDog) => favDog.id === dog.id);
+        setButtonText(isFavorited ? "Unfavorite" : "Favorite");
+}, [dog.id]);
+
+    const handleFav= async () => {
         // handle to add to favorites list logic
-        console.log("Favoite button was clicked")
+        const key = "favorites";
 
-    }
+        let favorites = JSON.parse(localStorage.getItem(key)) || [];
 
+        const isFavorited = favorites.some((favDog) =>  favDog.id === dog.id);
+
+        if(isFavorited){
+            favorites = favorites.filter((favDog) => favDog.id !== dog.id);
+            setButtonText("Favorite");
+        }
+        else{
+            favorites.push(dog);
+            setButtonText("Unfavorite");
+        }
+
+        localStorage.setItem(key, JSON.stringify(favorites));
+
+        console.log("Current localStorage: ", localStorage.getItem(key));
+        console.log("Updated Favorites: ", favorites);
+        
+    };
+    
     return (
         <div className="dogCard" key={dog.id}>
             <img className="dogImage" src={dog.img}></img>
@@ -15,7 +48,7 @@ const DogCard = ({dog}) => {
             <p className="dogBreed">Breed: {dog.breed}</p>
             <p className="dogAge">Age: {dog.age}</p>
             <p className="dogZip">Zip-Code: {dog.zip_code}</p>
-            <button className="favButton" onClick={handleFavorite}>Favorite</button>
+            <button className="favButton" onClick={handleFav}>{buttonText}</button>
         </div>
     );
 }

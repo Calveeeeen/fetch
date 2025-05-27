@@ -1,6 +1,7 @@
 .navbar-Container {
     display: grid;
-    grid-template-columns: 1fr 8fr 1fr;
+    grid-template-columns: 2fr 8fr 1fr 1fr;
+    /* grid-gap: 5px; */
     height: 50px;
     width: 100%;
     background-color:var(--fetch-dark-yellow);
@@ -16,19 +17,19 @@
     background-position: top;
 }
 
-.logout-Button {
+.logout-Button, .favorites-Button {
     display: flex;
     align-items: center;
     justify-content: center;
     margin: auto;
     height: 25px;
-    width: 100px;
+    width: 90px;
     border-radius: 5px;
     border: 1px solid black;
-    background-color: var(--fetch-dark-purple);
+    background-color: var(--fetch-eggplant);
     color: var(--fetch-white);
 }
 
-.logout-Button:hover {
+.logout-Button:hover, .favorites-Button:hover {
     background-color: var(--fetch-light-purple);
 }

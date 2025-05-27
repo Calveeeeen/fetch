@@ -22,3 +22,13 @@
     justify-content: center;
     margin: auto;
 }
+
+.favButton{
+    height: 25px;
+    text-align: center;
+    align-items: center;
+    border-radius: 5px;
+    background-color: var(--fetch-dark-yellow);
+    color: var(--fetch-purple);
+    font-weight: bold;
+}
