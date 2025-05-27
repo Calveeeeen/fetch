@@ -5,7 +5,7 @@ import { useState, useEffect} from 'react';
 const FavoritesPage = () => {
     const [favorites, setFavorites] = useState([]);
 
-    useEffect( () => {
+    const loadFavorites = () => {
         try {
             const stored = localStorage.getItem("favorites");
             const parsed = stored ? JSON.parse(stored) : [];
@@ -15,20 +15,24 @@ const FavoritesPage = () => {
             console.error("Failed to parse favorites", error);
             setFavorites([]);
         }
+    };
+
+    useEffect( () => {
+        loadFavorites();
     }, []);
 
     return (
-        <div>
-        <h1 className="favoritesPageHeader">Favorites Page</h1>
-        <div className="favoriteDogsContainer">
-            {favorites.length === 0 ? (
-                <p>No dogs have been added to favorites yet.</p>
-            ):(
-                favorites.map((dog) => {
-                    return <DogCard dog={dog} key={dog.id} />
-                })
-            )}
-        </div>
+        <div className="body">
+            <h1 className="favoritesPageHeader">Favorites Page</h1>
+            <div className="favoriteDogsContainer">
+                {favorites.length === 0 ? (
+                    <p>No dogs have been added to favorites yet.</p>
+                ):(
+                    favorites.map((dog) => {
+                        return <DogCard dog={dog} key={dog.id} onUnfavorited={loadFavorites}/>
+                    })
+                )}
+            </div>
         </div>
         
     )

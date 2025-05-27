@@ -38,7 +38,7 @@ const DogsPage = () => {
     }, []);
 
     return (
-        <div>
+        <div className="body">
             <h1 className="dogPageHeader">Dogs</h1>
             <div className="dogCardsContainer">
                 {dogs.length > 0 ? (

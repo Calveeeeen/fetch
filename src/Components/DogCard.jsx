@@ -4,11 +4,6 @@ import { useState, useEffect } from 'react';
 const DogCard = ({dog}) => {
     // create the dog card here.
     const [buttonText, setButtonText] = useState("Favorite")
-    
-    // useEffect(()=> {
-    //     const isFavorite = localStorage.getItem(dog.id);
-    //     setButtonText(isFavorite ? "Unfavorite" : "Favorite");
-    // }, [dog.id]);
 
     useEffect(() => {
         const key = "favorites";
@@ -17,7 +12,7 @@ const DogCard = ({dog}) => {
         setButtonText(isFavorited ? "Unfavorite" : "Favorite");
 }, [dog.id]);
 
-    const handleFav= async () => {
+    const handleFav = async () => {
         // handle to add to favorites list logic
         const key = "favorites";
 
