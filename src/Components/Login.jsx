@@ -31,6 +31,7 @@ const Login = () => {
                     throw new Error("Response Status: ", `${res.status}`);
                 } else {
                     navigate("/Dogs");
+                    localStorage.setItem("signedIn", true);
                 }
             });
         } catch (error) {

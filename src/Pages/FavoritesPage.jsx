@@ -4,7 +4,21 @@ import { useState, useEffect} from 'react';
 
 const FavoritesPage = () => {
     const [favorites, setFavorites] = useState([]);
+    
+    useEffect(() => {
+        const fetchCredentials = async () => {
+            const res = await fetch("https://frontend-take-home-service.fetch.com/auth/login", {
+                method: "POST",
+                credentials: "include"
+            }).then((res) => {
+                if (res.ok){
+                    
+                }
+            })
 
+            
+        }
+    }, [])
     const loadFavorites = () => {
         try {
             const stored = localStorage.getItem("favorites");
@@ -16,10 +30,10 @@ const FavoritesPage = () => {
             setFavorites([]);
         }
     };
-
+    
     useEffect( () => {
         loadFavorites();
-    }, []);
+    },[]);
 
     return (
         <div className="body">
@@ -33,6 +47,7 @@ const FavoritesPage = () => {
                     })
                 )}
             </div>
+            <div className="footer"></div>
         </div>
         
     )

@@ -10,27 +10,10 @@ const Navbar = () => {
     const handleFavoritesPage = async (event) => {
         event.preventDefault();
 
-        console.log("favoritesButton is being clicked");
-        navigate("/Favorites");
-        // try {
-        //     await fetch(
-        //         "https://frontend-take-home-service.fetch.com/auth/login",
-        //         {
-        //             method: "POST",
-        //             headers: { "Content-Type": "application/json" },
-        //             credentials: "include",
-        //         }
-        //     ).then((res) => {
-        //         if (!res.ok) {
-        //             throw new Error("Response status: ", `${res.status}`);
-        //         } else {
-        //             console.log("favoritesButton is being clicked");
-        //             navigate("/Favorites");
-        //         }
-        //     });
-        // } catch (error) {
-        //     console.log(error.message);
-        // }
+        if(localStorage.getItem("signedIn")){
+            navigate("/Favorites");
+        }
+
     };
 
     const handleHome = async (event) => {
@@ -72,7 +55,7 @@ const Navbar = () => {
                 if (!res.ok) {
                     throw new Error("Response Status: ", `${res.status}`);
                 } else {
-                    localStorage.removeItem("auth_token");
+                    localStorage.removeItem("signedIn");
                     navigate("/");
                 }
             });
@@ -83,12 +66,23 @@ const Navbar = () => {
 
     return (
         <div className="NavBar">
-            <div className="navbar-Container">
-                <div></div>
-                <img className="fetch-Logo" src="src\assets\fetchLogo.svg" alt="fetchLogo" onClick={handleHome}></img>
-                <button className="favorites-Button" onClick={handleFavoritesPage}> Favorites</button>
-                <button className="logout-Button" onClick={handleLogout}>Logout</button>
-            </div>
+            {localStorage.getItem("signedIn") ? (
+                <div className="navbar-Container">
+                    <div></div>
+                    <img className="fetch-Logo" src="src\assets\fetchLogo.svg" alt="fetchLogo" onClick={handleHome}></img>
+                    <button className="favorites-Button" onClick={handleFavoritesPage}> Favorites</button>
+                    <button className="logout-Button" onClick={handleLogout}>Logout</button>
+                </div>
+                ):(
+                    <div className="navbar-Container">
+                        <div></div>
+                        <img className="fetch-Logo" src="src\assets\fetchLogo.svg" alt="fetchLogo" onClick={handleHome}></img>
+                        <div></div>
+                        <div></div>
+                    </div>
+                )}
+                
+            
         </div>
     );
 };
