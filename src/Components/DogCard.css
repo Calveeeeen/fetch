@@ -1,3 +1,8 @@
+.dogPageHeader{
+    padding: 21px 0;
+    margin:0 auto;
+    text-align: center;
+}
 .dogCard{
     margin: 10px;
     padding: 5px;

@@ -1,8 +1,10 @@
-
+/* 
 .body{
     margin-top: 50px;
-}
+} */
 .favoritesPageHeader{
+    padding: 21px 0;
+    margin:0 auto;
     text-align: center;
 }
 .favoriteDogsContainer{
