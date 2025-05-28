@@ -2,22 +2,52 @@ import { useState, useEffect } from "react";
 import DogCard from "../Components/DogCard";
 import "../Pages/DogsPage.css";
 import FilterDogs from "../Components/FilterDogs";
+import { useNavigate } from 'react-router';
 
 const DogsPage = () => {
+    const navigate = useNavigate();
     const [dogs, setDogs] = useState([]);
-
+    const [sortOrder, setSortOrder] = useState("asc");
     // doesn't work yet
-    // const [isLoading, setIsLoading] = useState(false);
     const [filters, setFilters] = useState({breeds: [], size: 25, from: 0 ,sort: "breed:asc"});
 
     const handleFilterChange = (newFilters) =>{
         setFilters(newFilters);
     }
 
+    // auto signout after 1 hour
+    const handleLogout = async (event) => {
+        event.preventDefault();
+
+        try {
+            await fetch(
+                "https://frontend-take-home-service.fetch.com/auth/logout",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    credentials: "include",
+                }
+            ).then((res) => {
+                if (!res.ok) {
+                    throw new Error("Response Status: ", `${res.status}`);
+                } else {
+                    localStorage.removeItem("signedIn");
+                    navigate("/");
+                }
+            });
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
+
+    setTimeout(() => {handleLogout()}, 3600000)
+
     useEffect(() => {
         const fetchDogs = async () => {
             let dogIds = [];
-            let nextUrl = "/dogs/search";
+            let nextUrl = `/dogs/search?sort=breed:${sortOrder}`;
 
             const res = await fetch(
                 `https://frontend-take-home-service.fetch.com${nextUrl}`,
@@ -40,7 +70,7 @@ const DogsPage = () => {
             );
             // all the dog information
             const dogData = await dogObj.json();
-
+            // console.log("sorted: ", dogData);
             setDogs(dogData);
             
         };
@@ -48,7 +78,6 @@ const DogsPage = () => {
     }, [filters]);
 
     
-
     return (
         <div className="body">
             <h1 className="dogPageHeader">Dogs</h1>

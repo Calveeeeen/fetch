@@ -5,25 +5,12 @@ import { useState, useEffect} from 'react';
 const FavoritesPage = () => {
     const [favorites, setFavorites] = useState([]);
     
-    useEffect(() => {
-        const fetchCredentials = async () => {
-            const res = await fetch("https://frontend-take-home-service.fetch.com/auth/login", {
-                method: "POST",
-                credentials: "include"
-            }).then((res) => {
-                if (res.ok){
-                    
-                }
-            })
-
-            
-        }
-    }, [])
     const loadFavorites = () => {
         try {
             const stored = localStorage.getItem("favorites");
             const parsed = stored ? JSON.parse(stored) : [];
-
+            // sorts it alphabetically by breed
+            parsed.sort((a,b) => a.breed.localeCompare(b.breed));
             setFavorites(parsed);
         }catch(error){
             console.error("Failed to parse favorites", error);

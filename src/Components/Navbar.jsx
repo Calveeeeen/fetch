@@ -1,7 +1,5 @@
-/* just a navbar that sits on the top of the page with just a logo on left side and login/signup on right side */
 import Login from "./Login";
 import { useNavigate } from "react-router";
-// import { useState, useEffect} from 'react';
 import "../Components/Navbar.css";
 
 const Navbar = () => {
@@ -20,23 +18,11 @@ const Navbar = () => {
         event.preventDefault();
 
         console.log("logo is being clicked");
-        navigate("/Dogs");
-        // try{
-        //     await fetch("https://frontend-take-home-service.fetch.com/auth/login", {
-        //         method: "POST",
-        //         headers: {"Content-Type": "application/json"},
-        //         credentials: "include",
-        //     }).then(res => {
-        //         if(!res.ok){
-        //             throw new Error("Response status: ", `${res.status}`)
-        //         }else{
-        //             console.log("logo is being clicked");
-        //             navigate("/Dogs");
-        //         }
-        //     })
-        // }catch(error){
-        //     console.log(error.message);
-        // }
+        if(localStorage.getItem("signedIn") !== null){
+            navigate("/Dogs");
+        }
+        
+        
     };
 
     const handleLogout = async (event) => {
