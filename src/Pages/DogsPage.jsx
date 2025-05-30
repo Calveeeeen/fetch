@@ -1,37 +1,64 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import DogCard from "../Components/DogCard";
 import "../Pages/DogsPage.css";
 import { useNavigate } from 'react-router';
+import Paginating from "../Components/Pagination";
 
 const DogsPage = () => {
     const navigate = useNavigate();
+    const [currentPage, setCurrentPage] = useState(1);
     const [dogs, setDogs] = useState([]);
-    const [sortOrder, setSortOrder] = useState("asc");
     const [filterBreed, setFilterBreed] = useState("");
+    const [sortOrder, setSortOrder] = useState("asc");
     const [filters, setFilters] = useState({breeds: `${filterBreed}`, size: 25, form: 0, sort:`breed:${sortOrder}`});
     const [queryParam, setQueryParam] = useState("/dogs/search?size=25&sort=breed%3Aasc")
+    const [numPost, setNumPosts] = useState(10000);
+    const [pageMap, setPageMap] = useState({1:`${queryParam}`});
+    const fullPageMap = {};
+    const maxPages = Math.ceil(numPost/filters.size);
     const base = '/dogs/search?'
+    const currentPageRef = useRef(1);
 
     useEffect(() => {
+        let cancelled = false;
+        
         const fetchDogs = async () => {
-            let totalRes;
-            // setQueryParam(filters);
             let dogIds = [];
             let nextUrl = queryParam;
-            // console.log(nextUrl);
+
+            console.log("current url", nextUrl);
             const res = await fetch(
                 `https://frontend-take-home-service.fetch.com${nextUrl}`,
                 {
                     credentials: "include",
                 }
             );
-            // console.log("nextUrl", nextUrl)
+            
             const data = await res.json();
-            console.log("data.next url", data.next);
+            if (cancelled) {
+                return;
+            }
+
             dogIds = [...data.resultIds];
             nextUrl = data.next || "";
+            
             // use this for the pagination, total amount of results from the database (10,000)
-            totalRes = data.total;
+            setNumPosts(data.total);
+
+            for (let i=1; i<=maxPages; i++){
+                const from = (i-1)*filters.size;
+                const updatedFilters = {...filters, from: from};
+                setFilters(updatedFilters);
+                const pageQuery = base+ buildQuery(filters);
+                fullPageMap[i] = pageQuery;
+            };
+            setPageMap((prev) => {
+                const nextPage = currentPageRef.current+1;
+                if(!prev[nextPage] || prev[nextPage]!== data.next){
+                    return {...prev, [nextPage]: data.next};
+                }    
+                return prev;
+            });
 
             const dogObj = await fetch(
                 `https://frontend-take-home-service.fetch.com/dogs`,
@@ -44,43 +71,35 @@ const DogsPage = () => {
             );
             // all the dog information
             const dogData = await dogObj.json();
-            console.log("dogData", dogData);
-            setDogs(dogData);
-
-            // doesn't work 
-            // const filteredDogs = await fetch("https://frontend-take-home-service.fetch.com/dogs", 
-            //     {
-            //         method: "POST",
-            //         credentials: "include",
-            //         body: JSON.stringify(dogIds)
-            //     }
-            // );
-            // const filteredDogData = await filteredDogs.json();
-            // if(dogData.breed === filterBreed){
-            //     filteredDogData.push(dogData)
-            // }
-
-            // console.log("filtered:", filteredDogData);
+            if(!cancelled){
+                setDogs(dogData);
+            }
+            
+            // i think pagination needs to be included before the breed filtering can work. right now it's only filter the currently grabbed dogs(first 25).
+            console.log("fetching dog for: ", queryParam);
         };
         fetchDogs();
-        console.log("new query", queryParam);
-    }, [filters, queryParam]);
 
+        return () => {
+            cancelled = true;
+        }
+    }, [queryParam]);
+    
     const handleFilterBreed = (event) => {
         event.preventDefault();
         console.log("enter has been hit");
         
-        const updatedFilters = {...filters, breeds: filterBreed};
+        const updatedFilters = {...filters, breeds: filterBreed, from: 0};
         setFilters(updatedFilters);
         
-
-        
         const str = buildQuery(updatedFilters);
-        // console.log("str", str);
         let nextUrl = base.concat(str);
-        // console.log("nextUrl",nextUrl);
+
+        currentPageRef.current = 1;
+        setCurrentPage(1);
         setQueryParam(nextUrl);
-    }
+    };
+
     const handleSortOrder = (event ) => {
         const value = event.target.value;
         console.log("value of sort: ", value);
@@ -90,6 +109,8 @@ const DogsPage = () => {
 
         const str = buildQuery(updatedFilters);
         let nextUrl = base.concat(str);
+        currentPageRef.current = 1;
+        setCurrentPage(1);
         setQueryParam(nextUrl);
     };
 
@@ -99,15 +120,17 @@ const DogsPage = () => {
         setFilters(updatedFilters)
         const str = buildQuery(updatedFilters);
         let nextUrl = base.concat(str);
-        setQueryParam(nextUrl)
-    }
+        currentPageRef.current = 1;
+        setCurrentPage(1);
+        setQueryParam(nextUrl);
+    };
 
     const buildQuery = (filters) => {
         const param = new URLSearchParams();
         
         // filters.breeds.forEach((breed) => param.append("breeds", breed));
         if(filters.breeds){
-            param.append("breed", filters.breeds)
+            param.append("breeds", filters.breeds)
         }
         if(filters.size){
             param.append("size", filters.size)
@@ -118,10 +141,27 @@ const DogsPage = () => {
         if(filters.from !== undefined){
             param.append('from', filters.from);
         }
-
         return param.toString();
-    }
+    };
+    
+    const paginate = (number) => {
+        const from = (number-1)*filters.size;
 
+        const updatedFilters = {...filters, from: from};
+        const str = buildQuery(updatedFilters);
+        const nextUrl = base.concat(str);
+
+        if(queryParam === nextUrl){
+            return;
+        }
+
+        currentPageRef.current = number;
+        setCurrentPage(number)
+        setQueryParam(nextUrl);
+    };
+
+
+    // console.log(typeof math);
     // console.log("endpoint: ", buildQuery(filters))
     return (
         <div className="body">
@@ -129,7 +169,7 @@ const DogsPage = () => {
             <div>
                 <h1>Filter Container</h1>
                 <form onSubmit={handleFilterBreed}>
-                    <input type='text' placeholder="search the breed you're looking for" onChange={(event) => (setFilterBreed(event.target.value))} value={filterBreed}></input>
+                    <input id="breedSearch" type='text' placeholder="search the breed you're looking for" onChange={(event) => (setFilterBreed(event.target.value))} value={filterBreed}></input>
                     <button type="submit">Submit</button>
                 </form>
                 <select onChange={handleSizeChange}>
@@ -143,6 +183,7 @@ const DogsPage = () => {
                     <option value="desc">Breed by Z-A</option>
                 </select>
             </div>
+            <Paginating size={filters.size} totalPost={numPost} paginate={paginate} currentPage={currentPage}/>
             <div className="dogCardsContainer">
                 {dogs.length > 0 ? (
                     dogs.map((dog) => {

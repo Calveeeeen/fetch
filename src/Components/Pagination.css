@@ -1,0 +1,10 @@
+.paginationListContainer{
+    overflow: scroll;
+    width: 95%;
+}
+
+.pageItem{
+    display: inline;
+    margin: 2px;
+    
+}
