@@ -9,3 +9,88 @@
     width: 95%;
     margin: auto;
 }
+
+.filterPaginationContainer{
+    width: 95%;
+    height: 100px;
+    display: grid;
+    grid-template-columns: 12fr 1fr 1fr 10fr;
+    grid-gap: 10px;
+    margin: auto;
+    align-items: center;
+}
+.filterContainer{ 
+    width: 95%;
+    margin: auto;
+    row-gap: 10px;
+}
+
+.breedsList{
+    display: flex;
+    flex-wrap: wrap;
+}
+.filterContainer select{
+    height: 21px;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+.breedsList input {
+    display:grid;
+    grid-template-rows: 1fr 1fr;
+    width: 95%;
+    height: 25px;
+}
+.breedSuggestions {
+    position: absolute;
+    list-style: none;
+    padding: 0;
+    background-color: var(--fetch-light-yellow);
+    border: 1px solid black;
+    width: 26%;
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 10;
+}
+
+.breedSuggestions li {
+    position: relative;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.breedSuggestions li:hover{
+    background-color: var(--fetch-dark-yellow);
+    color: var(--fetch-purple);
+}
+
+.selectedBreeds{
+    max-width: 95%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+    align-items: center;
+}
+
+.selectedBreeds div{
+    border: 1px solid var(--fetch-eggplant);
+    border-radius: 5px;
+    padding: 4px 10px;
+    display:flex;
+    align-items: center;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.selectedBreeds button {
+    margin-left: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.sizeContainer, .sortContainer{
+    height: 25px;
+    width: 100px;
+}

@@ -6,6 +6,15 @@ const DogCard = ({dog}) => {
     const [buttonText, setButtonText] = useState("Favorite")
 
     useEffect(() => {
+        const pushToMatch = async () => {
+            const res = await fetch("https://frontend-take-home-service.fetch.com/dogs/match", {
+            method: "POST",
+            credentials: "include"
+        })
+        const matchArr = await res.json();
+        
+        }
+        
         const key = "favorites";
         const favorites = JSON.parse(localStorage.getItem(key)) || [];
         const isFavorited = favorites.some((favDog) => favDog.id === dog.id);
@@ -31,8 +40,6 @@ const DogCard = ({dog}) => {
 
         localStorage.setItem(key, JSON.stringify(favorites));
 
-        console.log("Current localStorage: ", localStorage.getItem(key));
-        console.log("Updated Favorites: ", favorites);
         
     };
     
