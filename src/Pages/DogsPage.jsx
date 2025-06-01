@@ -1,11 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import DogCard from "../Components/DogCard";
 import "../Pages/DogsPage.css";
-import { useNavigate } from "react-router";
 import Paginating from "../Components/Pagination";
 
 const DogsPage = () => {
-    const navigate = useNavigate();
     const [currentPage, setCurrentPage] = useState(1);
     const [dogs, setDogs] = useState([]);
     const [breeds, setBreeds] = useState([]);
@@ -176,27 +174,6 @@ const DogsPage = () => {
         return param.toString();
     };
 
-    const handleFilterBreed = (event) => {
-        event.preventDefault();
-        const value = event.target.value;
-
-        setFilterBreed(
-            filterBreed.includes(value)
-                ? filterBreed.filter((b) => b !== value)
-                : [...filterBreed, value]
-        );
-
-        const updatedFilters = { ...filters, breeds: filterBreed, from: 0 };
-        setFilters(updatedFilters);
-
-        const str = buildQuery(updatedFilters);
-        let nextUrl = base.concat(str);
-
-        currentPageRef.current = 1;
-        setCurrentPage(1);
-        setQueryParam(nextUrl);
-    };
-
     const handleRemoveBreed = (breedToRemove) => {
         const updated = filterBreed.filter((b) => b !== breedToRemove);
         setFilterBreed(updated);
@@ -267,22 +244,8 @@ const DogsPage = () => {
                         {breedInput && (
                             <ul className="breedSuggestions">
                                 {breeds
-                                    .filter(
-                                        (b) =>
-                                            b
-                                                .toLowerCase()
-                                                .includes(
-                                                    breedInput.toLowerCase()
-                                                ) && !filterBreed.includes(b)
-                                    )
-                                    .map((b) => (
-                                        <li
-                                            key={b}
-                                            onClick={() =>
-                                                handleSuggestions(b)
-                                            }>
-                                            {b}
-                                        </li>
+                                    .filter((b) => b.toLowerCase().includes(breedInput.toLowerCase()) && !filterBreed.includes(b)).map((b) => (
+                                        <li key={b} onClick={() => handleSuggestions(b)}> {b}</li>
                                     ))}
                             </ul>
                         )}
@@ -291,12 +254,7 @@ const DogsPage = () => {
                             {filterBreed.map((breed) => (
                                 <div className="selectedBreed" key={breed}>
                                     {breed}
-                                    <button
-                                        onClick={() =>
-                                            handleRemoveBreed(breed)
-                                        }>
-                                        x
-                                    </button>
+                                    <button onClick={() =>handleRemoveBreed(breed)}>x</button>
                                 </div>
                             ))}
                         </div>
