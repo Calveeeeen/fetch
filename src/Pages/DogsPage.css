@@ -1,8 +1,11 @@
-.dogPageHeader{
-    padding: 21px 0;
+.dogPageHeader, .disclaimer {
     margin:0 auto;
     text-align: center;
 }
+.dogPageHeader{
+    padding: 21px 0;
+}
+
 .dogCardsContainer{
     display: grid;
     grid-template-columns: repeat(5, 1fr);

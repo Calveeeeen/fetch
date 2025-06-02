@@ -59,7 +59,7 @@ const FavoritesPage = () => {
                     )}
                 
             </div>
-            <h1 className="favoritesPageHeader">Favorites Page</h1>
+            <h1 className="favoritesPageHeader">Favorites</h1>
             <div className="favoriteDogsContainer">
                 {favorites.length === 0 ? (
                     <p>No dogs have been added to favorites yet.</p>

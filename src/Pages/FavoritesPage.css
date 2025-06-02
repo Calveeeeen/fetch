@@ -4,7 +4,14 @@
     margin:0 auto;
     text-align: center;
 }
-.favoriteDogsContainer, .matchedDogContainer{
+
+.matchedDogContainer{
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+
+.favoriteDogsContainer{
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     width: 95%;
