@@ -8,26 +8,11 @@ const DogCard = ({dog}) => {
     useEffect(() => {
         const key = "favorites";
         const favorites = JSON.parse(localStorage.getItem(key)) || [];
-        const favArr = favorites.map(favorites => String(favorites.id));
-        console.log("favArr", favArr)
-
-        // should send an array of favorite dog id's to dogs/match. not returning anything as of now because 
-        // not sure if the id's i'm pushing are matched for adoption or not...
-        const pushToMatch = async () => {
-            const res = await fetch("https://frontend-take-home-service.fetch.com/dogs/match", {
-            method: "POST",
-            credentials: "include",
-            body:  favArr,
-            })
-            const matchArr = await res.json();
-            // console.log("mathcArr", matchArr);
-        }
-        
         
         const isFavorited = favorites.some((favDog) => favDog.id === dog.id);
         setButtonText(isFavorited ? "Unfavorite" : "Favorite");
-        pushToMatch();
-}, [dog.id]);
+        
+    }, [dog.id]);
 
     const handleFav = async () => {
         // handle to add to favorites list logic
@@ -51,6 +36,7 @@ const DogCard = ({dog}) => {
         
     };
     
+    // materialUI card integration
     return (
         <div className="dogCard" key={dog.id}>
             <img className="dogImage" src={dog.img}></img>

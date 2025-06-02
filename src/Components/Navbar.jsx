@@ -17,11 +17,10 @@ const Navbar = () => {
     const handleHome = async (event) => {
         event.preventDefault();
 
-        console.log("logo is being clicked");
+        // console.log("logo is being clicked");
         if(localStorage.getItem("signedIn") !== null){
             navigate("/Dogs");
         }
-        
         
     };
 

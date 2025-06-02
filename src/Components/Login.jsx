@@ -1,12 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import "../Components/Login.css";
-import Navbar from "../Components/Navbar";
+
 
 const Login = () => {
     const navigate = useNavigate();
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
+    // const [auth, setAuth] = useState(false)
+    
+    // Auto signout after 1 hour doesn't work
+    // useEffect(() => {
+    //     if (auth) {
+    //         const timeoutId = setTimeout(() => {
+    //         setAuth(false);
+    //         navigate("/");
+    //         localStorage.removeItem("signedIn")
+    //     }, 3600000); 
+
+    //     return () => clearTimeout(timeoutId);
+    //     }
+    // }, [auth, navigate]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -30,6 +44,7 @@ const Login = () => {
                 if (!res.ok) {
                     throw new Error("Response Status: ", `${res.status}`);
                 } else {
+                    // setAuth(true);
                     navigate("/Dogs");
                     localStorage.setItem("signedIn", true);
                 }
