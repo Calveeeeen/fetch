@@ -100,6 +100,25 @@ const DogsPage = () => {
                     body: JSON.stringify(dogIds),
                 }
             );
+
+            // fetch location data. match locations to dog.zip_codes
+            // const fetchDogLocation = await fetch(`https://frontend-take-home-service.fetch.com/locations/search`, {
+            //     method: "POST", 
+            //     credentials: "include"
+            // })
+
+            // const locationData = await fetchDogLocation.json();
+            // const locationDataArr = locationData.results;
+            // console.log("location data", locationDataArr);
+
+            // const zipCodeToLocation = {};
+            // locationDataArr.forEach(location => { 
+            //     zipCodeToLocation[location.zip_code] = location;
+            // });
+
+            // console.log("zipCodeToLocation", zipCodeToLocation);
+            // const dogLocationData = dogs.map(dog => ({...dog, location: zipCodeToLocation[dog.zip_code] || null}));
+
             // all the dog information
             const dogData = await dogObj.json();
             if (!cancelled) {
@@ -281,7 +300,7 @@ const DogsPage = () => {
             <div className="dogCardsContainer">
                 {dogs.length > 0 ? (
                     dogs.map((dog) => {
-                        return <DogCard dog={dog} key={dog.id} />;
+                        return <DogCard dog={dog} key={dog.id} location={dog.location}/>;
                     })
                 ) : (
                     <div>is Loading...</div>

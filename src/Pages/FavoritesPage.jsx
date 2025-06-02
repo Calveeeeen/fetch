@@ -4,7 +4,7 @@ import { useState, useEffect} from 'react';
 
 const FavoritesPage = () => {
     const [favorites, setFavorites] = useState([]);
-    
+
     const loadFavorites = () => {
         try {
             const stored = localStorage.getItem("favorites");
@@ -17,9 +17,10 @@ const FavoritesPage = () => {
             setFavorites([]);
         }
     };
-    
+   
+
     useEffect( () => {
-        loadFavorites();
+        loadFavorites(); 
     },[]);
 
     return (
@@ -33,6 +34,9 @@ const FavoritesPage = () => {
                         return <DogCard dog={dog} key={dog.id} onUnfavorited={loadFavorites}/>
                     })
                 )}
+            </div>
+            <div>
+                <h1>These dogs have been matched for adoption!</h1>
             </div>
             <div className="footer"></div>
         </div>
