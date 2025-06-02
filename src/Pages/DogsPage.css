@@ -48,10 +48,10 @@
     position: absolute;
     list-style: none;
     padding: 0;
-    margin-top: 1.62%;
+    top: 21.75%;
     background-color: var(--fetch-light-yellow);
     border: 1px solid black;
-    width: 26%;
+    width: 39.345%;
     max-height: 150px;
     overflow-y: auto;
     z-index: 10;
