@@ -7,11 +7,11 @@
     margin: 10px;
     padding: 5px;
     width: 250px;
-    border-radius: 5px;
+    /* border-radius: 5px;
     border: 2px solid var(--fetch-dark-purple);
     background-color: #fff0f8;
     color: var(--fetch-dark-purple);
-    box-shadow: 10px 10px 2px 1px var(--fetch-purple);
+    box-shadow: 10px 10px 2px 1px var(--fetch-purple); */
 }
 
 .dogImage{
@@ -32,8 +32,13 @@
     height: 25px;
     text-align: center;
     align-items: center;
-    border-radius: 5px;
-    background-color: var(--fetch-dark-yellow);
-    color: var(--fetch-purple);
-    font-weight: bold;
+    /* border-radius: 5px; */
+    /* background-color: var(--fetch-dark-yellow); */
+    /* color: var(--fetch-purple); */
+    /* font-weight: bold; */
+}
+
+.CardActions{
+    display: flex;
+    justify-content: center;
 }

@@ -2,6 +2,12 @@ import { useState, useEffect, useRef } from "react";
 import DogCard from "../Components/DogCard";
 import "../Pages/DogsPage.css";
 import Paginating from "../Components/Pagination";
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 const DogsPage = () => {
     const [currentPage, setCurrentPage] = useState(1);
@@ -280,17 +286,37 @@ const DogsPage = () => {
                         </div>
                     </div>
                 </div>
-                <select  className="sizeContainer" onChange={handleSizeChange}>
+                {/* <select  className="sizeContainer" onChange={handleSizeChange}>
                     <option value={25}>25</option>
                     <option value={50}>50</option>
                     <option value={75}>75</option>
                     <option value={100}>100</option>
-                </select>
-                <select className="sortContainer"  onChange={handleSortOrder} value={sortOrder}>
+                </select> */}
+                {/* <select className="sortContainer"  onChange={handleSortOrder} value={sortOrder}>
                     <option value="asc">Breed by A-Z</option>
                     <option value="desc">Breed by Z-A</option>
-                </select>
-
+                </select> */}
+                {/* MaterialUI Integration */}
+                <Box sx={{ minWidth: 120 }} className="sizeContainer">
+                    <FormControl fullWidth>
+                        <InputLabel>Size</InputLabel>
+                        <Select value={filters.size} label="Size" onChange={handleSizeChange}>
+                            <MenuItem value={25}>25</MenuItem>
+                            <MenuItem value={50}>50</MenuItem>
+                            <MenuItem value={75}>75</MenuItem>
+                            <MenuItem value={100}>100</MenuItem>
+                        </Select>
+                    </FormControl>
+                </Box>
+                <Box sx={{ minWidth: 150}} className="sortContainer">
+                    <FormControl fullWidth>
+                        <InputLabel>Sort Order</InputLabel>
+                        <Select value={sortOrder} label="Sort Order" onChange={handleSortOrder}>
+                            <MenuItem value="asc">Breed by A-Z</MenuItem>
+                            <MenuItem value="desc">Breed by Z-A</MenuItem>
+                        </Select>
+                    </FormControl>
+                </Box>
                 <Paginating
                     size={filters.size}
                     totalPost={numPost}

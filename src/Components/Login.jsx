@@ -7,7 +7,7 @@ const Login = () => {
     const navigate = useNavigate();
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
-    // const [auth, setAuth] = useState(false)
+    const [auth, setAuth] = useState(false)
     
     // Auto signout after 1 hour doesn't work
     // useEffect(() => {
@@ -16,11 +16,11 @@ const Login = () => {
     //         setAuth(false);
     //         navigate("/");
     //         localStorage.removeItem("signedIn")
-    //     }, 3600000); 
+    //     }, 3599999); 
 
     //     return () => clearTimeout(timeoutId);
     //     }
-    // }, [auth, navigate]);
+    // }, [navigate]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -44,7 +44,7 @@ const Login = () => {
                 if (!res.ok) {
                     throw new Error("Response Status: ", `${res.status}`);
                 } else {
-                    // setAuth(true);
+                    setAuth(true);
                     navigate("/Dogs");
                     localStorage.setItem("signedIn", true);
                 }
