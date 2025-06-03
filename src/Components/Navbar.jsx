@@ -54,7 +54,7 @@ const Navbar = () => {
             {localStorage.getItem("signedIn") ? (
                 <div className="navbar-Container">
                     <div></div>
-                    <img className="fetch-Logo" src="src\assets\fetchLogo.svg" alt="fetchLogo" onClick={handleHome}></img>
+                    <img className="fetch-Logo" src="../public/assets/fetchLogo.svg" alt="fetchLogo" onClick={handleHome}></img>
                     <button className="favorites-Button" onClick={handleFavoritesPage}> Favorites</button>
                     <button className="logout-Button" onClick={handleLogout}>Logout</button>
                 </div>
