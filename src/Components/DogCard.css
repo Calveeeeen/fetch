@@ -6,7 +6,7 @@
 .dogCard{
     margin: 10px;
     padding: 5px;
-    width: 250px;
+    width: 300px;
     /* border-radius: 5px;
     border: 2px solid var(--fetch-dark-purple);
     background-color: #fff0f8;
@@ -32,6 +32,7 @@
     height: 25px;
     text-align: center;
     align-items: center;
+    z-index: 0;
     /* border-radius: 5px; */
     /* background-color: var(--fetch-dark-yellow); */
     /* color: var(--fetch-purple); */

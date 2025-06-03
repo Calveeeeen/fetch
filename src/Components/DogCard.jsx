@@ -64,7 +64,6 @@ const DogCard = ({dog}) => {
         //     <p className="dogZip">Zip-Code: {dog.zip_code}</p>
         //     {/* <p className="dogLocation">City: {location.city}</p> */}
         //     <button className="favButton" onClick={handleFav}>{buttonText}</button>
-
         // </div>
 
         // materialUi integration

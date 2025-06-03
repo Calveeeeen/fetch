@@ -29,8 +29,8 @@
 }
 
 .breedsList{
-    display: flex;
-    flex-wrap: wrap;
+    display: block;
+    /* flex-wrap: wrap; */
 }
 .filterContainer select{
     height: 21px;
@@ -47,8 +47,9 @@
 .breedSuggestions {
     position: absolute;
     list-style: none;
+    margin: 0;
     padding: 0;
-    top: 21.75%;
+    top: 23;
     background-color: var(--fetch-light-yellow);
     border: 1px solid black;
     width: 39.345%;

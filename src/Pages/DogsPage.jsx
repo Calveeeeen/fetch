@@ -8,6 +8,8 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
+import Icon from "@mui/material/Icon";
 
 const DogsPage = () => {
     const [currentPage, setCurrentPage] = useState(1);
@@ -253,7 +255,6 @@ const DogsPage = () => {
     return (
         <div className="body">
             <h1 className="dogPageHeader">Dogs</h1>
-            <p className="disclaimer">Disclaimer: There are too many dogs to display all of them. Please search for the breed(s) that you are looking for.</p>
             <div className="filterPaginationContainer">
                 {/* <h1>Filter Container</h1> */}
                 <div className="filterContainer">
@@ -333,6 +334,13 @@ const DogsPage = () => {
                     <div>is Loading...</div>
                 )}
             </div>
+             <Paginating
+                    size={filters.size}
+                    totalPost={numPost}
+                    paginate={paginate}
+                    currentPage={currentPage}
+                />
+            <p className="disclaimer">Disclaimer: There are too many dogs to display all of them. Please search for the breed(s) that you are looking for.</p>
             <div className="footer"></div>
         </div>
     );
