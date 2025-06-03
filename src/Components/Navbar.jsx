@@ -61,7 +61,7 @@ const Navbar = () => {
                 ):(
                     <div className="navbar-Container">
                         <div></div>
-                        <img className="fetch-Logo" src="src\assets\fetchLogo.svg" alt="fetchLogo" onClick={handleHome}></img>
+                        <img className="fetch-Logo" src="/assets/fetchLogo.svg" alt="fetchLogo" onClick={handleHome}></img>
                         <div></div>
                         <div></div>
                     </div>
